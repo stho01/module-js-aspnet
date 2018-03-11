@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleJS.Web.Example", "ModuleJS.Web.Example\ModuleJS.Web.Example.csproj", "{3A6906DC-4918-4822-97CF-30FDFDAE6F08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleJS.Web.Mvc", "ModuleJS.MVC\ModuleJS.Web.Mvc.csproj", "{60FDD59C-F35A-4F1B-8B03-862A484151F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleJS.Web.Mvc", "ModuleJS.Web.Mvc\ModuleJS.Web.Mvc.csproj", "{60FDD59C-F35A-4F1B-8B03-862A484151F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

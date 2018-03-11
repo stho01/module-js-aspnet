@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ModuleJS.Web.Mvc.DataAnnotations
 {
-    [AttributeUsage(AttributeTargets.Class)]
-    public class ModuleAttribute : Attribute
+    /// <summary></summary>
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    public class ModuleOptionAttribute : Attribute
     {
         public string Name { get; set; }
     }

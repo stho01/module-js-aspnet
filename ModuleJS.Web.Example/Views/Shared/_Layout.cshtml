@@ -7,5 +7,31 @@
 </head>
 <body>
     @RenderBody()
+
+    <div data-module="MyModule">
+        <p>Hello world</p>
+    </div>
+
+    <script src="~/Scripts/stho/modulejs.js"></script>
+    <script>
+        (function (Modules) {
+            Modules.MyModule = function () {
+                this._moduleHtml = null;
+            };
+
+            Modules.MyModule.prototype = {
+                constructor: Modules.MyModule,
+                init: (moduleHtml) => {
+                    this._moduleHtml = moduleHtml;
+                    this._moduleHtml.appendChild(document.createElement("p")).innerText = "MyModule initialized";
+                },
+                onLoad: () => {
+                    this._moduleHtml.appendChild(document.createElement("p")).innerText = "MyModule loaded";
+                }
+            }
+        })(window.Modules || (window.Modules = {}));
+
+        ModuleJs({ namespaces: ["Modules"] });
+    </script>
 </body>
 </html>
