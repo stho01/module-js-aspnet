@@ -17,6 +17,7 @@ namespace ModuleJS.Web.Mvc.Html
         public static MvcModule ModuleFor(this HtmlHelper helper)
         {
             
+
             return null;    
         }
     }
