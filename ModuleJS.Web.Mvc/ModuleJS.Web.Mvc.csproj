@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -61,14 +62,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstraction\IModuleJSConfig.cs" />
+    <Compile Include="Config\ModuleJSConfig.cs" />
+    <Compile Include="Config\ReadonlyModuleJSConfig.cs" />
     <Compile Include="DataAnnotations\ModuleAttribute.cs" />
     <Compile Include="DataAnnotations\ModuleOptionAttribute.cs" />
+    <Compile Include="Html\Builders\HtmlComment.cs" />
+    <Compile Include="Html\Builders\HtmlElement.cs" />
+    <Compile Include="Html\Builders\IHtmlElement.cs" />
+    <Compile Include="Html\Builders\INode.cs" />
+    <Compile Include="Html\Builders\RawHtml.cs" />
     <Compile Include="Html\HtmlHelperExtensions.cs" />
     <Compile Include="Html\MvcModule.cs" />
+    <Compile Include="Abstraction\IModuleOptionsProvider.cs" />
+    <Compile Include="ModuleJS.cs" />
+    <Compile Include="Providers\ModuleOptionsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
