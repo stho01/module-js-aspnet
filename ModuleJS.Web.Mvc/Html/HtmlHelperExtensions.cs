@@ -1,4 +1,5 @@
-﻿using ModuleJS.Web.Mvc.Html.Builders;
+﻿using ModuleJS.Web.Mvc.DataAnnotations;
+using ModuleJS.Web.Mvc.Html.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,20 @@ namespace ModuleJS.Web.Mvc.Html
         {
             var model = helper.ViewData.Model;
 
-            //var element = HtmlElement.CreateElement(div => {
-            //    div.MergeAttribute(ModuleJS.Instance.);
+            var moduleType = model.GetType();
+            var moduleName = moduleType.Name;
+            var moduleMeta = moduleType.GetCustomAttributes(typeof(ModuleAttribute), true).FirstOrDefault() as ModuleAttribute;
+
+            //if (moduleMeta != null )
+            //    moduleName = 
+
+            //var element = HtmlElement.CreateElement(div =>
+            //{
+            //    div.MergeAttribute(ModuleJSManager.Instance.Config.ModuleAttributeName, );
             //});
 
             return null;    
         }
-        
         
     }
 }
