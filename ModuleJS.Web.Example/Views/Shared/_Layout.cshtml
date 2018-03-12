@@ -4,35 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/css/main.css" rel="stylesheet" />
 </head>
 <body>
     @RenderBody()
 
-    <div data-module="MyModule">
-        <p>Hello world</p>
-    </div>
-    @Html.BeginForm()
-
+    <script src="~/Scripts/TimerModule.js"></script>
     <script src="~/Scripts/stho/modulejs.js"></script>
-    <script>
-        (function (Modules) {
-            Modules.MyModule = function () {
-                this._moduleHtml = null;
-            };
-
-            Modules.MyModule.prototype = {
-                constructor: Modules.MyModule,
-                init: (moduleHtml) => {
-                    this._moduleHtml = moduleHtml;
-                    this._moduleHtml.appendChild(document.createElement("p")).innerText = "MyModule initialized";
-                },
-                onLoad: () => {
-                    this._moduleHtml.appendChild(document.createElement("p")).innerText = "MyModule loaded";
-                }
-            }
-        })(window.Modules || (window.Modules = {}));
-
-        ModuleJs({ namespaces: ["Modules"] });
-    </script>
+    <script>ModuleJs({ namespaces: ["Modules"] });</script>
 </body>
 </html>

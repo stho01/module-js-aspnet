@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using ModuleJS.Web.Mvc.Html.Builders;
+using System;
+using System.Collections.Generic;
 
 namespace ModuleJS.Web.Mvc.Abstraction
 {
@@ -8,20 +10,9 @@ namespace ModuleJS.Web.Mvc.Abstraction
     /// </summary>
     public interface IModuleOptionsProvider
     {
-        /// <summary>Gets the options object.</summary>
+        /// <summary>Appends a options object to the container </summary>
+        /// <param name="container"></param>
         /// <param name="model"></param>
-        /// <returns></returns>
-        IDictionary<string, object> GetOptionsObject(object model);
-
-        /// <summary>
-        /// gets the options object. 
-        /// Merges option values with the given additional options.
-        /// 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <param name="additionalOptions"></param>
-        /// <returns></returns>
-        IDictionary<string, object> GetOptionsObject(object model, IDictionary<string, object> additionalOptions);
-
+        void AppendOptionsObject(HtmlElement container, object model, object additionalOptions = null);
     }
 }

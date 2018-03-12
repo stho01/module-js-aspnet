@@ -1,5 +1,7 @@
 ﻿using ModuleJS.Web.Mvc.Abstraction;
 using ModuleJS.Web.Mvc.DataAnnotations;
+using ModuleJS.Web.Mvc.Html.Builders;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,28 @@ namespace ModuleJS.Web.Mvc.SystemServices
     public class ModuleOptionsProvider : IModuleOptionsProvider
     {
         //**********************************************
-        //** public:
+        //** public api:
+        //**********************************************
+
+        /// <summary></summary>
+        /// <param name="container"></param>
+        /// <param name="model"></param>
+        /// <param name="additionalOptions"></param>
+        public void AppendOptionsObject(HtmlElement container, object model, object additionalOptions = null)
+        {
+            var options = GetOptionsObject(model);
+            var optionsAsJson = JsonConvert.SerializeObject(options, ModuleJSManager.Instance.Config.SerializatoinSettings);
+
+            container.MergeAttribute("data-options", optionsAsJson);
+        }
+
+        //**********************************************
+        //** private api:
         //**********************************************
 
         /// <summary>Gets the options object.</summary>
         /// <returns>A dictionary where the key is the name of the option</returns>
-        public IDictionary<string, object> GetOptionsObject(object model) => GetOptionsObject(model, null);
+        protected virtual IDictionary<string, object> GetOptionsObject(object model) => GetOptionsObject(model, null);
 
         /// <summary>
         /// Gets the options object. 
@@ -32,9 +50,8 @@ namespace ModuleJS.Web.Mvc.SystemServices
         /// <param name="model"></param>
         /// <param name="additionalOptions"></param>
         /// <returns>A dictionary where the key is the name of the option</returns>
-        public IDictionary<string, object> GetOptionsObject(object model, IDictionary<string, object> additionalOptions)
+        protected virtual IDictionary<string, object> GetOptionsObject(object model, IDictionary<string, object> additionalOptions)
         {
-
             var options = new Dictionary<string, object>();
             var optionProperties = model.GetType().GetProperties(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.Public)
                 .Where(prop => Attribute.IsDefined(prop, typeof(ModuleOptionAttribute)))
@@ -55,11 +72,7 @@ namespace ModuleJS.Web.Mvc.SystemServices
 
             return options;
         }
-
-        //**********************************************
-        //** private:
-        //**********************************************
-
+        
         /// <summary>
         /// Merge options
         /// Note: 
@@ -71,7 +84,7 @@ namespace ModuleJS.Web.Mvc.SystemServices
         /// <remarks>
         /// Handles null values. 
         /// </remarks>
-        private Dictionary<string, object> MergeOptions(IDictionary<string, object> options, IDictionary<string, object> additionalOptions)
+        protected Dictionary<string, object> MergeOptions(IDictionary<string, object> options, IDictionary<string, object> additionalOptions)
         {
             if (additionalOptions == null)
                 return options as Dictionary<string, object>;

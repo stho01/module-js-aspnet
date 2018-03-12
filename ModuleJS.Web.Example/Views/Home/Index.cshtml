@@ -1,9 +1,9 @@
-﻿
+﻿@model ModuleJS.Web.Example.Models.View.Pages.HomeViewModel
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
-
-
+@Html.Module(Model.TimerModule)

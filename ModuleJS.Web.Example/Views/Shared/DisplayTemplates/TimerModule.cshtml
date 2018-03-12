@@ -1,0 +1,18 @@
+﻿@model ModuleJS.Web.Example.Models.TimerModule
+
+<div class="timer-clock">
+    @if (!Model.HideMinutes)
+    {
+        <span data-js-hook="tc:mins">00</span>
+    }
+    :
+    @if (!Model.HideSeconds)
+    {
+        <span data-js-hook="tc:secs">00</span>
+    }
+    :
+    @if (!Model.HideHundredth)
+    {
+        <span data-js-hook="tc:hs">00</span>
+    }
+</div>

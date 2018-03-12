@@ -66,8 +66,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstraction\IModuleJSConfig.cs" />
+    <Compile Include="Config\DefaultModuleJSConfig.cs" />
     <Compile Include="Config\ModuleJSConfig.cs" />
-    <Compile Include="Config\ReadonlyModuleJSConfig.cs" />
     <Compile Include="DataAnnotations\ModuleAttribute.cs" />
     <Compile Include="DataAnnotations\ModuleOptionAttribute.cs" />
     <Compile Include="Html\Builders\HtmlComment.cs" />
@@ -79,12 +79,15 @@
     <Compile Include="Html\MvcModule.cs" />
     <Compile Include="Abstraction\IModuleOptionsProvider.cs" />
     <Compile Include="ModuleJSManager.cs" />
+    <Compile Include="SystemServices\Initializer.cs" />
     <Compile Include="SystemServices\ModuleOptionsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Html\Factories\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -37,34 +37,25 @@ namespace ModuleJS.Web.Mvc
         //** fields:
         //**********************************************
         
-
-        private readonly ModuleJSConfig _config = new ModuleJSConfig();
+        private IModuleJSConfig _config = new DefaultModuleJSConfig();
 
         //**********************************************
         //** ctor:
         //**********************************************
 
-        private ModuleJSManager() { }
+        private ModuleJSManager() {}
 
         //**********************************************
         //** public:
         //**********************************************
-
-        /// <summary>Initializes the ModuleJSManager</summary>
-        /// <remarks>Sets the defaults and makes the system ready to be used by the client.</remarks>
-        /// <returns>Instance of it self</returns>
-        public ModuleJSManager Initialize()
-        {
-            OptionsProvider = new ModuleOptionsProvider();
-            return this;
-        }
-
+        
         /// <summary>Configure the ModuleJS system.</summary>
         /// <param name="config"></param>
         /// <returns>Instance of it self</returns>
-        public ModuleJSManager Configure(Action<ModuleJSConfig> configure)
+        public ModuleJSManager Initialize(Action<ModuleJSConfig> configure)
         {
-            configure(_config);
+            var initializer = new Initializer();
+            _config = initializer.Initialize(configure);
             return this;
         }
     }
