@@ -15,7 +15,6 @@ namespace ModuleJS.Web.Mvc.Html
     /// <summary>HTML Helper extensions that provides easy to use methods for creating an module element.</summary>
     public static class HtmlHelperExtensions
     {
-        
         /// <summary>Uses the current view context to create a module js wrapper.</summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="helper"></param>
@@ -33,8 +32,6 @@ namespace ModuleJS.Web.Mvc.Html
             return MvcHtmlString.Create(element.ToString());
         }
 
-
-        
         /// <summary></summary>
         /// <typeparam name="TModel"></typeparam>
         /// <param name="helper"></param>
