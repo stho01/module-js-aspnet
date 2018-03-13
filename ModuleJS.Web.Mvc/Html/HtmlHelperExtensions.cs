@@ -1,4 +1,5 @@
 ﻿  using ModuleJS.Web.Mvc.DataAnnotations;
+using ModuleJS.Web.Mvc.Helpers;
 using ModuleJS.Web.Mvc.Html.Builders;
 using System;
 using System.Collections.Generic;
@@ -21,18 +22,28 @@ namespace ModuleJS.Web.Mvc.Html
         /// <returns></returns>
         public static MvcHtmlString Module<TModel, TModule>(this HtmlHelper<TModel> helper, TModule module)
         {
-            var moduleType = module.GetType();
-            var moduleName = moduleType.Name;
-            var moduleMeta = moduleType.GetCustomAttributes(typeof(ModuleAttribute), true).FirstOrDefault() as ModuleAttribute;
+            var metaData = ModuleMetaHelpers.GetMetaData(module);
 
             var element = HtmlElement.CreateElement(div => {
-                div.MergeAttribute(ModuleJSManager.Instance.Config.ModuleAttributeName, moduleName);
+                div.MergeAttribute(ModuleJSManager.Instance.Config.ModuleAttributeName, metaData.ModuleName);
                 ModuleJSManager.Instance.Config.OptionsProvider.AppendOptionsObject(div, module, null);
                 div.AppendRawHtml(helper.DisplayFor(x => module));
             });
 
             return MvcHtmlString.Create(element.ToString());
         }
+
+
         
+        /// <summary></summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <param name="helper"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static MvcModule BeginModule<TModel>(this HtmlHelper helper)
+        {
+            var module = new MvcModule(helper.ViewContext);
+            return module;
+        }
     }
 }

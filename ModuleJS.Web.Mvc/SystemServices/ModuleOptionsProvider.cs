@@ -1,5 +1,6 @@
 ﻿using ModuleJS.Web.Mvc.Abstraction;
 using ModuleJS.Web.Mvc.DataAnnotations;
+using ModuleJS.Web.Mvc.Helpers;
 using ModuleJS.Web.Mvc.Html.Builders;
 using Newtonsoft.Json;
 using System;
@@ -53,22 +54,14 @@ namespace ModuleJS.Web.Mvc.SystemServices
         protected virtual IDictionary<string, object> GetOptionsObject(object model, IDictionary<string, object> additionalOptions)
         {
             var options = new Dictionary<string, object>();
-            var optionProperties = model.GetType().GetProperties(BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.Public)
-                .Where(prop => Attribute.IsDefined(prop, typeof(ModuleOptionAttribute)))
-                .Select(prop => new Tuple<PropertyInfo, ModuleOptionAttribute>(prop, prop.GetCustomAttribute<ModuleOptionAttribute>())).ToList();
-
-            optionProperties.ForEach(data => {
-                string optionName = string.IsNullOrEmpty(data.Item2.Name) ? data.Item1.Name : data.Item2.Name;
-
-                options.Add(optionName, data.Item1.GetValue(model));
-            });
+            foreach (var meta in ModuleMetaHelpers.ExtractOptionsMetaData(model))
+                options.Add(meta.OptionName, meta.Property.GetValue(model));
 
             // Merge with additional options.
             options = MergeOptions(options, additionalOptions);
 
             if (options.Count == 0)
                 return null;
-
 
             return options;
         }

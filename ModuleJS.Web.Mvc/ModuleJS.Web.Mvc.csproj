@@ -70,6 +70,7 @@
     <Compile Include="Config\ModuleJSConfig.cs" />
     <Compile Include="DataAnnotations\ModuleAttribute.cs" />
     <Compile Include="DataAnnotations\ModuleOptionAttribute.cs" />
+    <Compile Include="Helpers\ModuleMetaHelpers.cs" />
     <Compile Include="Html\Builders\HtmlComment.cs" />
     <Compile Include="Html\Builders\HtmlElement.cs" />
     <Compile Include="Html\Builders\IHtmlElement.cs" />
@@ -78,6 +79,8 @@
     <Compile Include="Html\HtmlHelperExtensions.cs" />
     <Compile Include="Html\MvcModule.cs" />
     <Compile Include="Abstraction\IModuleOptionsProvider.cs" />
+    <Compile Include="Models\ModuleMetaData.cs" />
+    <Compile Include="Models\ModuleOptionPropertyMetaData.cs" />
     <Compile Include="ModuleJSManager.cs" />
     <Compile Include="SystemServices\Initializer.cs" />
     <Compile Include="SystemServices\ModuleOptionsProvider.cs" />
@@ -86,8 +89,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Html\Factories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
